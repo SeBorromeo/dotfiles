@@ -1,0 +1,64 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet menu rctl
+)
+
+(deftemplate charmod (char mod)
+  (switch 
+    ((key-timing 3 less-than 350)) $char break
+    () (tap-hold-release 180 500 $char $mod) break
+  )
+)
+
+(deftemplate shiftmod (char mod)
+  (switch 
+    ((key-timing 3 less-than 350)) $char break
+    () (tap-hold-release 200 200 $char $mod) break
+  )
+)
+
+(deflayermap (main)
+  ;; homerow mods
+  a (t! shiftmod a lsft)
+  s (t! charmod s lctl)
+  d (t! charmod d lalt)
+  f (t! charmod f lmet)
+
+  j (t! charmod j rmet)
+  k (t! charmod k ralt) 
+  l (t! charmod l rctl)
+  ; (t! shiftmod ; rsft)
+
+  ;; unbinding some keys for now
+  bspc XX
+  lctl XX
+  rctl XX
+  rsft XX
+
+  ;; caps nav
+  caps (tap-hold 200 200 bspc (layer-while-held nav))
+
+  ;; function layer
+  ' (tap-hold 0 200 ret (layer-while-held fun))
+
+  ;; esc + shift
+  lsft (tap-hold 0 120 esc lsft)
+
+  ;; symbol layer
+  spc (tap-hold 200 200 spc (layer-while-held sym))
+
+  ;; gaming toggle
+  menu (layer-switch gaming)
+)
+
+(include "nav-layer.kbd")
+(include "sym-layer.kbd")
+(include "gaming-layer.kbd")
+(include "function-layer.kbd")

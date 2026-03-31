@@ -1,0 +1,14 @@
+(defalias
+  af5 (t! shiftmod f5 lsft)
+  sf6 (t! charmod f6 lctl)
+  df7 (t! charmod f7 lalt)
+  ff8 (t! charmod f8 lmet)
+)
+
+(deflayer fun
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    f1   f2   f3   f4   _    _    _    _    _    _    _    _    _
+  _    @af5 @sf6 @df7 @ff8 _    _    _    _    _    _    _    _
+  _    f9   f10  f11  f12  _    _    _    _    _    _    _
+  _    _    _              _              _    _    _    _
+)
