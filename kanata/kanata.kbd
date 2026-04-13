@@ -4,6 +4,7 @@
 )
 
 (defsrc
+
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -21,7 +22,7 @@
 (deftemplate shiftmod (char mod)
   (switch 
     ((key-timing 3 less-than 350)) $char break
-    () (tap-hold-release 200 200 $char $mod) break
+    () (tap-hold-release 200 500 $char $mod) break
   )
 )
 
@@ -52,17 +53,32 @@
   ;; nav layer
   lsft (tap-hold 0 120 esc (layer-while-held nav))
   rsft (tap-hold 0 120 esc (layer-while-held nav))
-  / (tap-hold 0 120 / (layer-while-held nav))
+  / (tap-hold 0 180 / (layer-while-held nav))
 
   ;; symbol layer
   spc (tap-hold 200 200 spc (layer-while-held sym))
-
-  ;; gaming toggle
-  menu (layer-switch gaming)
 )
 
+;; defines a vkey named v-$key, example v-bspc
+;; and an alias @v-bspc that press and and releases the v-key
+;; within on-press and on-release respectively.
+(deftemplate v- (key)
+  (defvirtualkeys (concat v- $key) $key)
+  (defalias (concat v- $key)
+    (multi (on-press press-vkey (concat v- $key)) (on-release release-vkey (concat v- $key))))
+)
+
+(t! v- ret)
 (defchordsv2
-  (d f) ret 20 all-released (nav)
+  (d f) @v-ret 20 first-release (nav)
+  
+  ;; gaming toggle
+  (menu esc)
+    (switch
+      ((layer gaming)) (layer-switch main) break
+      () (layer-switch gaming) break
+    )
+    20 first-release ()
 )
 
 (include "nav-layer.kbd")

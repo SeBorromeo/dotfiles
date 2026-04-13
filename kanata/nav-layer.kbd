@@ -2,7 +2,7 @@
 (defalias
   a (t! shiftmod a lsft)
   s (t! charmod s lctl)
-  d (t! charmod d lalt)
+  dstb (t! charmod S-tab lalt)
   ftb (t! charmod tab lmet)
 
   j (t! charmod j rmet)
@@ -12,9 +12,9 @@
 )
     
 (deflayer nav                          
-  _    _    _    _        _    _    _    _    _    _    _    _    _    _
+  _    _    _    _       _    _    _    _    _    _    _    _    _    _
   _    _    _    C-S-tab C-tab _    _    home pgup end  _    _    _    _
-  _    @a   @s   @d       @ftb _    left down up   rght _    _    _
+  _    @a   @s   @dstb   @ftb _    left down up   rght _    _    _
   _    _    _    _        _    _    _    _    pgdn _    _    _
   _    _    _                  _              _    _    _    _  
 )
