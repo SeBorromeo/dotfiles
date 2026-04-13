@@ -1,5 +1,6 @@
 (defcfg
   process-unmapped-keys yes
+  concurrent-tap-hold yes
 )
 
 (defsrc
@@ -34,22 +35,24 @@
   j (t! charmod j rmet)
   k (t! charmod k ralt) 
   l (t! charmod l rctl)
-  ; (t! shiftmod ; rsft)
+  ; (t! shiftmod ' rsft)
 
   ;; unbinding some keys for now
   bspc XX
   lctl XX
   rctl XX
-  rsft XX
 
-  ;; caps nav
-  caps (tap-hold 200 200 bspc (layer-while-held nav))
-
+  ;; caps num
+  ;; caps bspc
+  caps (tap-hold 200 200 bspc (layer-while-held num))
+  
   ;; function layer
-  ' (tap-hold 0 200 ret (layer-while-held fun))
+  ' (tap-hold 0 200 ' (layer-while-held fun))
 
-  ;; esc + shift
-  lsft (tap-hold 0 120 esc lsft)
+  ;; nav layer
+  lsft (tap-hold 0 120 esc (layer-while-held nav))
+  rsft (tap-hold 0 120 esc (layer-while-held nav))
+  / (tap-hold 0 120 / (layer-while-held nav))
 
   ;; symbol layer
   spc (tap-hold 200 200 spc (layer-while-held sym))
@@ -58,7 +61,12 @@
   menu (layer-switch gaming)
 )
 
+(defchordsv2
+  (d f) ret 20 all-released (nav)
+)
+
 (include "nav-layer.kbd")
 (include "sym-layer.kbd")
 (include "gaming-layer.kbd")
 (include "function-layer.kbd")
+(include "num-layer.kbd")
