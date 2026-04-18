@@ -4,7 +4,6 @@
 )
 
 (defsrc
-
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
   caps a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -21,8 +20,8 @@
 
 (deftemplate shiftmod (char mod)
   (switch 
-    ((key-timing 3 less-than 350)) $char break
-    () (tap-hold-release 200 500 $char $mod) break
+    ;; ((key-timing 3 less-than 150)) $char break
+    () (tap-hold-release 0 200 $char $mod) break
   )
 )
 
@@ -42,10 +41,11 @@
   bspc XX
   lctl XX
   rctl XX
+  esc XX
 
   ;; caps num
   ;; caps bspc
-  caps (tap-hold 200 200 bspc (layer-while-held num))
+  caps (tap-hold 0 200 bspc (layer-while-held num))
   
   ;; function layer
   ' (tap-hold 0 200 ' (layer-while-held fun))
@@ -56,7 +56,7 @@
   / (tap-hold 0 180 / (layer-while-held nav))
 
   ;; symbol layer
-  spc (tap-hold 200 200 spc (layer-while-held sym))
+  spc (tap-hold 0 200 spc (layer-while-held sym))
 )
 
 ;; defines a vkey named v-$key, example v-bspc
@@ -70,7 +70,7 @@
 
 (t! v- ret)
 (defchordsv2
-  (d f) @v-ret 20 first-release (nav)
+  (d f) @v-ret 20 all-released (nav)
   
   ;; gaming toggle
   (menu esc)
