@@ -70,8 +70,13 @@
 
 (t! v- ret)
 (defchordsv2
-  (d f) @v-ret 20 all-released (nav)
+  (d f) @v-ret 50 first-release (nav)
   
+  (a ;) (caps-word-custom-toggle 2000
+    (a b c d e f g h i j k l m n o p q r s t u v w x y z -)
+    (bspc del up down left rght lsft rsft)
+  ) 50 all-released () 
+   
   ;; gaming toggle
   (menu esc)
     (switch
