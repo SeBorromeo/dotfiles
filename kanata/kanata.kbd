@@ -13,16 +13,23 @@
 
 (deftemplate charmod (char mod)
   (switch 
-    ((key-timing 3 less-than 350)) $char break
-    () (tap-hold-release 180 500 $char $mod) break
+    ((key-timing 3 less-than 225)) $char break
+    () (tap-hold-release 180 400 $char $mod) break
   )
 )
 
 (deftemplate shiftmod (char mod)
   (switch 
-    ;; ((key-timing 3 less-than 150)) $char break
-    () (tap-hold-release 0 200 $char $mod) break
+    ((and
+     (key-timing 2 less-than 250)
+     (not (key-history spc 1))
+    )) $char break 
+    () (tap-hold-release 0 160 $char $mod) break
   )
+)
+
+(deftemplate rsftmod (char mod)
+  (tap-hold-release 0 140 $char $mod)
 )
 
 (deflayermap (main)
@@ -35,7 +42,7 @@
   j (t! charmod j rmet)
   k (t! charmod k ralt) 
   l (t! charmod l rctl)
-  ; (t! shiftmod ' rsft)
+  ; (t! rsftmod ' rsft)
 
   ;; unbinding some keys for now
   bspc XX
@@ -48,7 +55,7 @@
   caps (tap-hold 0 200 bspc (layer-while-held num))
   
   ;; function layer
-  ' (tap-hold 0 200 ' (layer-while-held fun))
+  ' (tap-hold 0 200 (one-shot 2000 lsft) (layer-while-held fun))
 
   ;; nav layer
   lsft (tap-hold 0 120 esc (layer-while-held nav))
