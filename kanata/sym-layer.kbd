@@ -1,4 +1,4 @@
-(deflayer sym
+(deflayer (sym icon sym.png)
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    `    S-,  S-.  -    S--  S-6  S-]  S-[  S-4  S-\  _    _    _
   _    S-1  S-8   /   =    S-7  S-3  ;    S-0  S-9  S-'  _    _

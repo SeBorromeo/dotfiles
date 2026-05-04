@@ -10,8 +10,8 @@
   l (t! charmod l rctl)
   ; (t! shiftmod ; rsft)
 )
-    
-(deflayer nav                          
+
+(deflayer (nav icon nav.png)
   _    _    _    _       _    _    _    _    _    _    _    _    _    _
   _    _    _    C-S-tab C-tab _    _    home pgup end  _    _    _    _
   _    @a   @s   @dstb   @ftb _    left down up   rght _    _    _
