@@ -55,10 +55,10 @@
   caps (tap-hold 0 200 bspc (layer-while-held num))
   
   ;; function layer
-  ' (tap-hold 0 200 (one-shot 2000 lsft) (layer-while-held fun))
+  ' (tap-hold 0 200 (one-shot 2000 rsft) (layer-while-held fun))
 
   ;; nav layer
-  lsft (tap-hold 0 120 esc (layer-while-held nav))
+  lsft (tap-hold 0 150 (one-shot 2000 lsft) (layer-while-held nav))
   rsft (tap-hold 0 120 esc (layer-while-held nav))
   / (tap-hold 0 180 / (layer-while-held nav))
 
@@ -78,19 +78,23 @@
 (t! v- ret)
 (defchordsv2
   (d f) @v-ret 50 first-release (nav)
-  
+
+  (s d) esc 35 first-release (nav)
+
   (a ;) (caps-word-custom-toggle 2000
     (a b c d e f g h i j k l m n o p q r s t u v w x y z -)
     (bspc del up down left rght lsft rsft)
   ) 50 all-released () 
    
   ;; gaming toggle
-  (menu esc)
+  (lctl rctl)
     (switch
       ((layer gaming)) (layer-switch main) break
       () (layer-switch gaming) break
     )
     20 first-release ()
+
+  (q p) lrld 20 first-release ()
 )
 
 (include "nav-layer.kbd")
