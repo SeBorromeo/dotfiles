@@ -11,6 +11,10 @@
   lctl lmet lalt           spc            ralt rmet menu rctl
 )
 
+(defalias
+  num-lock (layer-switch num)
+)
+
 (deftemplate charmod (char mod)
   (switch 
     ((key-timing 3 less-than 225)) $char break
@@ -55,7 +59,7 @@
   caps (tap-hold 0 200 bspc (layer-while-held num))
   
   ;; function layer
-  ' (tap-hold 0 200 (one-shot 2000 rsft) (layer-while-held fun))
+  ' (tap-hold 0 200 @num-lock (layer-while-held fun))
 
   ;; nav layer
   lsft (tap-hold 0 150 (one-shot 2000 lsft) (layer-while-held nav))
