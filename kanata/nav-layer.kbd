@@ -4,11 +4,6 @@
   s (t! charmod s lctl)
   dstb (t! charmod S-tab lalt)
   ftb (t! charmod tab lmet)
-
-  j (t! charmod j rmet)
-  k (t! charmod k ralt)
-  l (t! charmod l rctl)
-  ; (t! shiftmod ; rsft)
 )
 
 (deflayer (nav icon nav.png)

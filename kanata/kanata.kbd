@@ -49,12 +49,6 @@
   l (t! charmod l rctl)
   ; (t! rsftmod ' rsft)
 
-  ;; unbinding some keys for now
-  bspc XX
-  lctl XX
-  rctl XX
-  esc XX
-
   ;; caps num
   ;; caps bspc
   caps (tap-hold 0 200 bspc (layer-while-held num))
