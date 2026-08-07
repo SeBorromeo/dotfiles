@@ -81,8 +81,6 @@
 (defchordsv2
   (d f) @v-ret 50 first-release (nav)
 
-  (q w) t 50 first-release ()
-
   (s d) esc 35 first-release (nav)
 
   (a ;) (caps-word-custom-toggle 2000
